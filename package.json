@@ -9,9 +9,13 @@
   "scripts": {
     "start-server": "yarn workspace @mck-coding-challenge/server start",
     "start-server-dev": "yarn workspace @mck-coding-challenge/server dev",
-    "start-frontend": "yarn workspace @mck-coding-challenge/client build"
+    "start-frontend": "yarn workspace @mck-coding-challenge/client build",
+    "populate-database": "node ./scripts/populateDB.js"
   },
   "devDependencies": {
     "nodemon": "^2.0.20"
+  },
+  "dependencies": {
+    "mongoose": "^6.9.1"
   }
 }
