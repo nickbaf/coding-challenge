@@ -10,7 +10,8 @@ let ReportController = {
     },
 
     async getAllOpenReports(req, res) {
-        const reports = await Report.find(state='OPEN');
+        const reports = await Report.find({state:"OPEN"});
+        console.log(reports)
         res.send(reports);
     },
 

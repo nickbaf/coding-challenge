@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 const ReportSchema = new Schema({
     "id": {
-      "type": Schema.Types.ObjectId
+      "type": String
     },
     "source": {
       "type": String

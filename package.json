@@ -9,7 +9,7 @@
   "scripts": {
     "start-server": "yarn workspace @mck-coding-challenge/server start",
     "start-server-dev": "yarn workspace @mck-coding-challenge/server dev",
-    "start-frontend": "yarn workspace @mck-coding-challenge/client build",
+    "start-frontend": "yarn workspace @mck-coding-challenge/frontend start",
     "populate-database": "node ./scripts/populateDB.js"
   },
   "devDependencies": {
