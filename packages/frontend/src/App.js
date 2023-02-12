@@ -17,18 +17,17 @@ function App() {
     getReports();
   }, []);
 
-
   return (
     <div className="App">
-      <header className="App-header">       
-      Reports
+      <header className="App-header">
+        Reports
       </header>
       <div className="reportContainer">
-      {reports.map((report) => {
-            return <Report
-             id={report.id} state={report.state}
-             reportType={report.state} message={report.payload.message}></Report>;
-          })}
+        {reports.map((report) => {
+          return <Report
+            id={report._id} state={report.state}
+            reportType={report.payload.reportType} message={report.payload.message}></Report>;
+        })}
       </div>
     </div>
   );

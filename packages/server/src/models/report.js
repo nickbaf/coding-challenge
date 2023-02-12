@@ -21,7 +21,7 @@ const ReportSchema = new Schema({
       }
     },
     "state": {
-      "type": String
+      "type": { type: String, index: true }
     },
     "payload": {
       "source": {

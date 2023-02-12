@@ -10,21 +10,18 @@ let ReportController = {
     },
 
     async getAllOpenReports(req, res) {
-        const reports = await Report.find({state:"OPEN"});
-        console.log(reports)
+        const reports = await Report.find({state:"OPEN"}); 
         res.send(reports);
     },
 
     async getReportById(req, res) {
-        const report = await Report.findById(req.params.reportId);
+        const report = await Report.find(req.params.reportId);
         res.send(report);
     },
 
-    async updateReportStatus(req, res) {
-        const report = await Report.findById(req.params.reportId);
-        report.state = 'CLOSED'
-        await Report.updateOne({ _id: req.params.reportId }, report);
-        res.send(report);
+    async updateReportStatus(req, res) {       
+        await Report.findOneAndUpdate({ _id: req.params.reportId }, {state: 'CLOSED'});
+        res.sendStatus(200);
     },
 }
 
