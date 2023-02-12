@@ -4,17 +4,16 @@ const mongoose = require('mongoose');
 const Report = require('../packages/server/src/models/report.js');
 const reports = require('../fixtures/reports.json');
 
-// mongoose.set('strictQuery', false);
 async function populate(){
-    await mongoose.connect('mongodb://127.0.0.1:27017/reports');
+    await mongoose.connect('mongodb://localhost:27017/reports', { useNewUrlParser: true, useUnifiedTopology: true });
 
-    reports['elements'].forEach(report => {
-        Report.create(report).catch(err => console.log(err));
-        console.log('Report created');
+    await Report.insertMany(reports['elements']).then(() => {
+        console.log('Reports inserted');
+    }
+    ).catch(err => {
+        console.log(err);
     });
-
 }
-
 
 populate().then(() => {
     console.log('Database populated');
@@ -23,4 +22,3 @@ populate().then(() => {
     console.log(err);
     process.exit(1);
 });
-// Report.insertMany(reports['elements']).catch(err => console.log(err));

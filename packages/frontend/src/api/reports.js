@@ -1,5 +1,4 @@
 import axios from 'axios';
-// const axios = require("axios").default;
 
 
 export async function getAllReports() {
@@ -7,5 +6,10 @@ export async function getAllReports() {
 }
 
 export async function resolveReport(reportId) {
-    return await axios.put(`http://localhost:8080/reports/${reportId}`)
+    return await axios.put(`http://localhost:8080/reports/${reportId}`, { ticketState: 'CLOSED' })
+}
+
+
+export async function blockReport(reportId) {
+    return await axios.post(`http://localhost:8080/reports/${reportId}`, { ticketState: 'BLOCKED' })
 }

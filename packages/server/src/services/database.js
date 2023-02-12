@@ -1,4 +1,3 @@
-// mongodb
 const mongoose = require('mongoose');
 
 

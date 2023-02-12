@@ -6,22 +6,38 @@ let ReportController = {
     async createReport(req, res) {
         const report = new Report(req.body);
         await report.save();
-        res.send(report);
+        res.status(200).end();
     },
 
     async getAllOpenReports(req, res) {
-        const reports = await Report.find({state:"OPEN"}); 
-        res.send(reports);
+        await Report.find({ state: "OPEN" }).then((reports) => {
+            res.status(200).json(reports).end();
+        }).catch((err) => {
+            console.log(err);
+            res.status(500).json(err).end();
+        }
+        );
     },
 
-    async getReportById(req, res) {
-        const report = await Report.find(req.params.reportId);
-        res.send(report);
+    async resolveReport(req, res) {
+        
+        await Report.findOneAndUpdate({ _id: req.params.reportId }, { state: req.body.ticketState }).then(() => {
+            res.status(202).end();
+        }).catch((err) => {
+            console.log(err);
+            res.status(500).end();
+        })
     },
 
-    async updateReportStatus(req, res) {       
-        await Report.findOneAndUpdate({ _id: req.params.reportId }, {state: 'CLOSED'});
-        res.sendStatus(200);
+    async blockReport(req, res) {
+        // Make a request to an internal API to block the content from the social network and if sucesfull
+        // run the folowing code to update the database
+        await Report.findOneAndUpdate({ _id: req.params.reportId }, { state: req.body.ticketState }).then(() => {
+            res.status(202).end();
+        }).catch((err) => {
+            console.log(err);
+            res.status(500).end();
+        })
     },
 }
 
